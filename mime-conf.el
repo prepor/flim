@@ -222,7 +222,7 @@ may be:
 			    (error "'filename is not specified in situation.")
 			  (setq dest (concat dest
 					     (substring mtext p (1- i))
-					     (shell-quote-argument file))
+					     (mime-escape-single-quote file))
 				i (1+ i)
 				p i)
 			  )))
@@ -270,6 +270,8 @@ may be:
 ;;; @ end
 ;;;
 
+(defun mime-escape-single-quote (str)
+  (replace-regexp-in-string "'" "'\"'\"'" str))
 (provide 'mime-conf)
 
 ;;; mime-conf.el ends here
